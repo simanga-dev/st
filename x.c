@@ -677,6 +677,7 @@ setsel(char *str, Time t)
 	XSetSelectionOwner(xw.dpy, XA_PRIMARY, xw.win, t);
 	if (XGetSelectionOwner(xw.dpy, XA_PRIMARY) != xw.win)
 		selclear();
+   	clipcopy(NULL);
 }
 
 void
@@ -1818,6 +1819,13 @@ kpress(XEvent *ev)
 		len = XmbLookupString(xw.ime.xic, e, buf, sizeof buf, &ksym, &status);
 	else
 		len = XLookupString(e, buf, sizeof buf, &ksym, NULL);
+	if ( IS_SET(MODE_KBDSELECT) ) {
+		if ( match(XK_NO_MOD, e->state) ||
+		     (XK_Shift_L | XK_Shift_R) & e->state )
+			win.mode ^= trt_kbdselect(ksym, buf, len);
+		return;
+	}
+ 
 	/* 1. shortcuts */
 	for (bp = shortcuts; bp < shortcuts + LEN(shortcuts); bp++) {
 		if (ksym == bp->keysym && match(bp->mod, e->state)) {
@@ -1994,6 +2002,15 @@ usage(void)
 	    "          [-T title] [-t title] [-w windowid] -l line"
 	    " [stty_args ...]\n", argv0, argv0);
 }
+
+void toggle_winmode(int flag) {
+	win.mode ^= flag;
+}
+
+void keyboard_select(const Arg *dummy) {
+	win.mode ^= trt_kbdselect(-1, NULL, 0);
+}
+
 
 int
 main(int argc, char *argv[])
