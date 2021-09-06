@@ -70,7 +70,7 @@ static unsigned int blinktimeout = 800;
 /*
  * thickness of underline and bar cursors
  */
-static unsigned int cursorthickness = 2;
+static unsigned int cursorthickness = 4;
 
 /*
  * bell volume. It must be a value between -100 and 100. Use 0 for disabling
@@ -96,7 +96,7 @@ char *termname = "st-256color";
  *
  *	stty tabs
  */
-unsigned int tabspaces = 8;
+unsigned int tabspaces = 4;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
@@ -125,7 +125,7 @@ static const char *colorname[] = {
 	/* more colors can be added after 255 to use with DefaultXX */
 	"#cccccc", // 256
 	"#555555", // 257
-	"#080808", // 258
+	"#0c0c0c", // 258
 	"#a9b1d6", // 259
 };
 
@@ -134,9 +134,9 @@ static const char *colorname[] = {
  * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
  */
-unsigned int defaultfg = 259;
+unsigned int defaultfg = 256;
 unsigned int defaultbg = 258;
-static unsigned int defaultcs = 256;
+static unsigned int defaultcs = 10;
 static unsigned int defaultrcs = 257;
 
 /*
