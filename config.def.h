@@ -12,7 +12,7 @@ static char *font2[] = {
 	"Inconsolata for Powerline:pixelsize=12:antialias=true:autohint=true",
 	"Hack Nerd Font Mono:pixelsize=11:antialias=true:autohint=true",
 };
-static int borderpx = 6;
+static int borderpx = 0;
 
 /*
  * What program is execed by st depends of these precedence rules:
@@ -77,7 +77,7 @@ static unsigned int cursorthickness = 4;
  * bell volume. It must be a value between -100 and 100. Use 0 for disabling
  * it
  */
-static int bellvolume = 0;
+static int bellvolume = 1;
 
 /* default TERM value */
 char *termname = "st-256color";
@@ -147,7 +147,7 @@ static unsigned int defaultrcs = 257;
  * 6: Bar ("|")
  * 7: Snowman ("☃")
  */
-static unsigned int cursorshape = 2;
+static unsigned int cursorshape = 6;
 
 /*
  * Default columns and rows numbers
