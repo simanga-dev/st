@@ -35,6 +35,7 @@ enum glyph_attribute {
 	ATTR_WIDE       = 1 << 9,
 	ATTR_WDUMMY     = 1 << 10,
 	ATTR_LIGA       = 1 << 11,
+	ATTR_SELECTED   = 1 << 12,
 	ATTR_BOLD_FAINT = ATTR_BOLD | ATTR_FAINT,
 	ATTR_DIRTYUNDERLINE = 1 << 15,
 };
