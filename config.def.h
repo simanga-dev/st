@@ -9,8 +9,9 @@
 static char *font = "JetBrainsMono-Regular:pixelsize=14:antialias=true:autohint=true";
 /* Spare fonts */
 static char *font2[] = {
-	"Inconsolata for Powerline:pixelsize=12:antialias=true:autohint=true",
-	"Hack Nerd Font Mono:pixelsize=11:antialias=true:autohint=true",
+	"Inconsolata for Powerline:pixelsize=14:antialias=true:autohint=true",
+	"Hack Nerd Font Mono:pixelsize=14:antialias=true:autohint=true",
+	"codicon:pixelsize=14:antialias=true:autohint=true",
 };
 static int borderpx = 0;
 
@@ -79,11 +80,11 @@ static unsigned int cursorthickness = 4;
  *    Bold affects lines thickness if boxdraw_bold is not 0. Italic is ignored.
  * 0: disable (render all U25XX glyphs normally from the font).
  */
-const int boxdraw = 0;
-const int boxdraw_bold = 0;
+const int boxdraw = 1;
+const int boxdraw_bold = 1;
 
 /* braille (U28XX):  1: render as adjacent "pixels",  0: use font */
-const int boxdraw_braille = 0;
+const int boxdraw_braille = 1;
 
 
 /*
@@ -138,7 +139,7 @@ static const char *colorname[] = {
 
 	/* more colors can be added after 255 to use with DefaultXX */
 	"#c0caf5", // 256
-	"#2e3440", // 257
+	"#2e4274", // 257
 	"#0c0c0c", // 258
 	"#a9b1d6", // 259
 };
@@ -170,8 +171,8 @@ static unsigned int cursorshape = 6;
  * Default columns and rows numbers
  */
 
-static unsigned int cols = 80;
-static unsigned int rows = 24;
+static unsigned int cols = 90;
+static unsigned int rows = 25;
 
 /*
  * Default colour and shape of the mouse cursor
@@ -229,7 +230,7 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_Y,           clippaste,      {.i =  0} },
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
-	{ TERMMOD,              XK_v,           newterm,        {.i =  0} },
+	{ XK_ANY_MOD,              XK_F9,           newterm,        {.i =  0} },
 	{ ShiftMask,            XK_Return,      keyboard_select,        {.i =  0} },
 	{ ShiftMask,            XK_Page_Up,     kscrollup,      {.i = -1} },
 	{ ShiftMask,            XK_Page_Down,   kscrolldown,    {.i = -1} },

@@ -1085,14 +1085,25 @@ tswapscreen(void)
 void
 newterm(const Arg* a)
 {
+	int res;
 	switch (fork()) {
 	case -1:
 		die("fork failed: %s\n", strerror(errno));
 		break;
 	case 0:
-		chdir(getcwd_by_pid(pid));
-		execlp("st", "./st", NULL);
-		break;
+		switch (fork()) {
+		case -1:
+			die("fork failed: %s\n", strerror(errno));
+			break;
+		case 0:
+			res = chdir(getcwd_by_pid(pid));
+			execlp("st", "./st", NULL);
+			break;
+		default:
+			exit(0);
+		}
+	default:
+		wait(NULL);
 	}
 }
 
@@ -2875,7 +2886,7 @@ int trt_kbdselect(KeySym ksym, char *buf, int len) {
 		cu.x = term.c.x, cu.y = term.c.y;
 		set_notifmode(0, ksym);
 		return MODE_KBDSELECT;
-	case XK_s :
+	case XK_v :
 		if ( selectsearch_mode & 1 )
 			selclear();
 		else
