@@ -5,13 +5,14 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-/* static char *font = "Hack:pixelsize=14:antialias=true:autohint=true"; */
-static char *font = "JetBrainsMono-Regular:pixelsize=14:antialias=true:autohint=true";
+ // static char *font = "Hack:pixelsize=14:antialias=true:autohint=true";
+static char *font = "JetBrainsMono:pixelsize=14:antialias=true:autohint=true";
+// static char *font = "FiraCode:pixelsize=14:antialias=true:autohint=true";
 /* Spare fonts */
 static char *font2[] = {
-	"Inconsolata for Powerline:pixelsize=14:antialias=true:autohint=true",
-	"Hack Nerd Font Mono:pixelsize=14:antialias=true:autohint=true",
-	"codicon:pixelsize=14:antialias=true:autohint=true",
+	"codicon:pixelsize=15:antialias=true:autohint=true",
+	"Inconsolata:pixelsize=15:antialias=true:autohint=true",
+	"Hack:pixelsize=15:antialias=true:autohint=true",
 };
 static int borderpx = 0;
 
@@ -72,7 +73,7 @@ static unsigned int blinktimeout = 800;
 /*
  * thickness of underline and bar cursors
  */
-static unsigned int cursorthickness = 4;
+static unsigned int cursorthickness = 6;
 
 /*
  * 1: render most of the lines/blocks characters without using the font for
@@ -111,7 +112,10 @@ char *termname = "st-256color";
  *
  *	stty tabs
  */
-unsigned int tabspaces = 4;
+unsigned int tabspaces = 8;
+
+/* bg opacity */
+float alpha = 1;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
@@ -142,6 +146,7 @@ static const char *colorname[] = {
 	"#2e4274", // 257
 	"#1c1c1c", // 258
 	"#a9b1d6", // 259
+	"#0d1117", // 260
 };
 
 
@@ -150,9 +155,9 @@ static const char *colorname[] = {
  * foreground, background, cursor, reverse cursor, selection
  */
 unsigned int defaultfg = 256;
-unsigned int defaultbg = 258;
-static unsigned int defaultcs = 10;
-static unsigned int defaultrcs = 256;
+unsigned int defaultbg = 260;
+static unsigned int defaultcs = 11;
+static unsigned int defaultrcs = 11;
 unsigned int selectionbg = 257;
 unsigned int selectionfg = 7;
 /* If 0 use selectionfg as foreground in order to have a uniform foreground-color */
