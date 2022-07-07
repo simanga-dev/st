@@ -14,7 +14,7 @@ static char *font2[] = {
 	"Inconsolata:pixelsize=15:antialias=true:autohint=true",
 	"Hack:pixelsize=15:antialias=true:autohint=true",
 };
-static int borderpx = 0;
+static int borderpx = 4;
 
 /*
  * What program is execed by st depends of these precedence rules:
@@ -234,6 +234,7 @@ static Shortcut shortcuts[] = {
 	{ MODKEY,              XK_V,           clippaste,      {.i =  0} },
 	{ TERMMOD,              XK_Y,           clippaste,      {.i =  0} },
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
+	{ XK_ANY_MOD,            XK_Insert,      clippaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
 	{ XK_ANY_MOD,              XK_F9,           newterm,        {.i =  0} },
 	{ ShiftMask,            XK_Return,      keyboard_select,        {.i =  0} },
