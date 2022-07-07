@@ -234,12 +234,14 @@ static Shortcut shortcuts[] = {
 	{ MODKEY,              XK_V,           clippaste,      {.i =  0} },
 	{ TERMMOD,              XK_Y,           clippaste,      {.i =  0} },
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
-	{ XK_ANY_MOD,            XK_Insert,      clippaste,       {.i =  0} },
+	{ XK_ANY_MOD,            XK_Insert,     clippaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
-	{ XK_ANY_MOD,              XK_F9,           newterm,        {.i =  0} },
-	{ ShiftMask,            XK_Return,      keyboard_select,        {.i =  0} },
+	{ XK_ANY_MOD,              XK_F9,       newterm,        {.i =  0} },
+	{ ShiftMask,            XK_Return,      copyurl,        {.i =  0} },
 	{ ShiftMask,            XK_Page_Up,     kscrollup,      {.i = -1} },
 	{ ShiftMask,            XK_Page_Down,   kscrolldown,    {.i = -1} },
+	{ ShiftMask,            XK_Return,      copyurl,        {.i =  0} },
+	{ ControlMask,          XK_Return,      keyboard_select,        {.i =  0} },
 };
 
 /*
