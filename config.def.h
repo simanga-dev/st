@@ -10,6 +10,8 @@ static char *font = "JetBrainsMono:pixelsize=14:antialias=true:autohint=true";
 // static char *font = "FiraCode:pixelsize=14:antialias=true:autohint=true";
 /* Spare fonts */
 static char *font2[] = {
+    "noto-fonts-emoji:pixelsize=12:antialias=true:autohint=true",
+    "Symbola:pixelsize=12:antialias=true:autohint=true",
 	"codicon:pixelsize=15:antialias=true:autohint=true",
 	"Inconsolata:pixelsize=15:antialias=true:autohint=true",
 	"Hack:pixelsize=15:antialias=true:autohint=true",
@@ -73,7 +75,7 @@ static unsigned int blinktimeout = 800;
 /*
  * thickness of underline and bar cursors
  */
-static unsigned int cursorthickness = 6;
+static unsigned int cursorthickness = 2;
 
 /*
  * 1: render most of the lines/blocks characters without using the font for
@@ -147,6 +149,7 @@ static const char *colorname[] = {
 	"#1c1c1c", // 258
 	"#a9b1d6", // 259
 	"#0d1117", // 260
+	"#005577", // 261
 };
 
 
@@ -156,8 +159,8 @@ static const char *colorname[] = {
  */
 unsigned int defaultfg = 256;
 unsigned int defaultbg = 260;
-static unsigned int defaultcs = 11;
-static unsigned int defaultrcs = 11;
+static unsigned int defaultcs = 261;
+static unsigned int defaultrcs = 261;
 unsigned int selectionbg = 257;
 unsigned int selectionfg = 7;
 /* If 0 use selectionfg as foreground in order to have a uniform foreground-color */
