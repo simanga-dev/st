@@ -5,6 +5,7 @@
 #include <locale.h>
 #include <signal.h>
 #include <sys/select.h>
+#include <sys/wait.h>
 #include <time.h>
 #include <unistd.h>
 #include <libgen.h>
@@ -982,6 +983,26 @@ xloadfont(Font *f, FcPattern *pattern)
 }
 
 void
+opencopied(const Arg *arg)
+{
+	char * const clip = xsel.clipboard;
+	pid_t chpid;
+
+	if(!clip) {
+		fprintf(stderr, "Warning: nothing copied to clipboard\n");
+		return;
+	}
+
+	if ((chpid = fork()) == 0) {
+		if (fork() == 0)
+			execlp(arg->v, arg->v, clip, NULL);
+		exit(1);
+	}
+	if (chpid > 0)
+		waitpid(chpid, NULL, 0);
+}
+
+void
 xloadfonts(const char *fontstr, double fontsize)
 {
 	FcPattern *pattern;
@@ -1056,7 +1077,7 @@ xloadsparefont(FcPattern *pattern, int flags)
 {
 	FcPattern *match;
 	FcResult result;
-	
+
 	match = FcFontMatch(NULL, pattern, &result);
 	if (!match) {
 		return 1;
@@ -1098,50 +1119,50 @@ xloadsparefonts(void)
 	}
 
 	for (fp = font2; fp - font2 < fc; ++fp) {
-	
+
 		if (**fp == '-')
 			pattern = XftXlfdParse(*fp, False, False);
 		else
 			pattern = FcNameParse((FcChar8 *)*fp);
-	
+
 		if (!pattern)
 			die("can't open spare font %s\n", *fp);
-	   		
+
 		if (defaultfontsize > 0) {
 			sizeshift = usedfontsize - defaultfontsize;
 			if (sizeshift != 0 &&
 					FcPatternGetDouble(pattern, FC_PIXEL_SIZE, 0, &fontval) ==
-					FcResultMatch) {	
+					FcResultMatch) {
 				fontval += sizeshift;
 				FcPatternDel(pattern, FC_PIXEL_SIZE);
 				FcPatternDel(pattern, FC_SIZE);
 				FcPatternAddDouble(pattern, FC_PIXEL_SIZE, fontval);
 			}
 		}
-	
+
 		FcPatternAddBool(pattern, FC_SCALABLE, 1);
-	
+
 		FcConfigSubstitute(NULL, pattern, FcMatchPattern);
 		XftDefaultSubstitute(xw.dpy, xw.scr, pattern);
-	
+
 		if (xloadsparefont(pattern, FRC_NORMAL))
 			die("can't open spare font %s\n", *fp);
-	
+
 		FcPatternDel(pattern, FC_SLANT);
 		FcPatternAddInteger(pattern, FC_SLANT, FC_SLANT_ITALIC);
 		if (xloadsparefont(pattern, FRC_ITALIC))
 			die("can't open spare font %s\n", *fp);
-			
+
 		FcPatternDel(pattern, FC_WEIGHT);
 		FcPatternAddInteger(pattern, FC_WEIGHT, FC_WEIGHT_BOLD);
 		if (xloadsparefont(pattern, FRC_ITALICBOLD))
 			die("can't open spare font %s\n", *fp);
-	
+
 		FcPatternDel(pattern, FC_SLANT);
 		FcPatternAddInteger(pattern, FC_SLANT, FC_SLANT_ROMAN);
 		if (xloadsparefont(pattern, FRC_BOLD))
 			die("can't open spare font %s\n", *fp);
-	
+
 		FcPatternDestroy(pattern);
 	}
 }
@@ -2363,7 +2384,7 @@ kpress(XEvent *ev)
 			win.mode ^= trt_kbdselect(ksym, buf, len);
 		return;
 	}
- 
+
 	/* 1. shortcuts */
 	for (bp = shortcuts; bp < shortcuts + LEN(shortcuts); bp++) {
 		if (ksym == bp->keysym && match(bp->mod, e->state)) {

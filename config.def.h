@@ -18,7 +18,7 @@ static char *font2[] = {
 };
 static int borderpx = 4;
 
-/*
+/*
  * What program is execed by st depends of these precedence rules:
  * 1: program passed with -e
  * 2: scroll and/or utmp
@@ -70,7 +70,7 @@ static double maxlatency = 33;
  * blinking timeout (set to 0 to disable blinking) for the terminal blinking
  * attribute.
  */
-static unsigned int blinktimeout = 800;
+static unsigned int blinktimeout = 400;
 
 /*
  * thickness of underline and bar cursors
@@ -114,7 +114,7 @@ char *termname = "st-256color";
  *
  *	stty tabs
  */
-unsigned int tabspaces = 8;
+unsigned int tabspaces = 4;
 
 /* bg opacity */
 float alpha = 1;
@@ -159,8 +159,8 @@ static const char *colorname[] = {
  */
 unsigned int defaultfg = 256;
 unsigned int defaultbg = 260;
-static unsigned int defaultcs = 261;
-static unsigned int defaultrcs = 261;
+static unsigned int defaultcs = 256;
+static unsigned int defaultrcs = 256;
 unsigned int selectionbg = 257;
 unsigned int selectionfg = 7;
 /* If 0 use selectionfg as foreground in order to have a uniform foreground-color */
@@ -233,14 +233,14 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_Prior,       zoom,           {.f = +1} },
 	{ TERMMOD,              XK_Next,        zoom,           {.f = -1} },
 	/* { TERMMOD,              XK_Home,        zoomreset,      {.f =  0} }, */
-	{ MODKEY,              XK_C,           clipcopy,       {.i =  0} },
-	{ MODKEY,              XK_V,           clippaste,      {.i =  0} },
-	{ TERMMOD,              XK_Y,           clippaste,      {.i =  0} },
+	{ TERMMOD,              XK_C,           clipcopy,       {.i =  0} },
+	{ TERMMOD,              XK_V,           clippaste,      {.i =  0} },
+	{ TERMMOD,              XK_O,           opencopied,      {.v = "xdg-open"} },
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
-	{ XK_ANY_MOD,            XK_Insert,     clippaste,       {.i =  0} },
+	{ XK_ANY_MOD,            XK_Insert,     clippaste,      {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
 	{ XK_ANY_MOD,              XK_F9,       newterm,        {.i =  0} },
-	{ ShiftMask,            XK_Return,      copyurl,        {.i =  0} },
+  { ShiftMask,            XK_Return,      copyurl,        {.i =  0} },
 	{ ShiftMask,            XK_Page_Up,     kscrollup,      {.i = -1} },
 	{ ShiftMask,            XK_Page_Down,   kscrolldown,    {.i = -1} },
 	{ ShiftMask,            XK_Return,      copyurl,        {.i =  0} },
