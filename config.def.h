@@ -7,18 +7,20 @@
  */
  // static char *font = "Hack:pixelsize=14:antialias=true:autohint=true";
 static char *font = "JetBrainsMono:pixelsize=14:antialias=true:autohint=true";
+// static char *font = "BerkeleyMonoTrial-Regular:pixelsize=14:antialias=true:autohint=true";
+
 // static char *font = "FiraCode:pixelsize=14:antialias=true:autohint=true";
 /* Spare fonts */
 static char *font2[] = {
-    "noto-fonts-emoji:pixelsize=12:antialias=true:autohint=true",
-    "Symbola:pixelsize=12:antialias=true:autohint=true",
-	"codicon:pixelsize=15:antialias=true:autohint=true",
-	"Inconsolata:pixelsize=15:antialias=true:autohint=true",
-	"Hack:pixelsize=15:antialias=true:autohint=true",
+    "noto-fonts-emoji:pixelsize=16:antialias=true:autohint=true",
+    "Symbola:pixelsize=16:antialias=true:autohint=true",
+	"codicon:pixelsize=16:antialias=true:autohint=true",
+	"Inconsolata:pixelsize=16:antialias=true:autohint=true",
+	"Hack:pixelsize=16:antialias=true:autohint=true",
 };
 static int borderpx = 4;
 
-/*
+/*
  * What program is execed by st depends of these precedence rules:
  * 1: program passed with -e
  * 2: scroll and/or utmp
