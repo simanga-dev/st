@@ -5,11 +5,10 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
- // static char *font = "Hack:pixelsize=14:antialias=true:autohint=true";
-static char *font = "JetBrainsMono:pixelsize=14:antialias=true:autohint=true";
+ // static char *font = "Hack:pixelsize=15:antialias=true:autohint=true";
+static char *font = "JetBrainsMono:pixelsize=16:antialias=true:autohint=true";
 // static char *font = "BerkeleyMonoTrial-Regular:pixelsize=14:antialias=true:autohint=true";
-
-// static char *font = "FiraCode:pixelsize=14:antialias=true:autohint=true";
+// static char *font = "FiraCode:pixelsize=16:antialias=true:autohint=true";
 /* Spare fonts */
 static char *font2[] = {
     "noto-fonts-emoji:pixelsize=16:antialias=true:autohint=true",
@@ -119,7 +118,7 @@ char *termname = "st-256color";
 unsigned int tabspaces = 4;
 
 /* bg opacity */
-float alpha = 1;
+float alpha = 0.87;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
